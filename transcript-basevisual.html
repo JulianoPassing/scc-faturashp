@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><title>Transcript Ticket - Street Car Club</title>
+      <link rel="icon" href="https://i.imgur.com/YULctuK.png" type="image/png">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+      
+      :root {
+        --primary-color: #EAF207;
+        --secondary-color: #F4F740;
+        --accent-color: #C6C403;
+        --background-color: #0D0D0D;
+        --card-background: linear-gradient(135deg, #0D0D0D 0%, #0D0D0D 100%);
+        --text-color: #FFFFFF;
+        --text-secondary: #B0B0B0;
+        --border-color: #30363D;
+        --shadow-color: rgba(0, 0, 0, 0.4);
+        --gradient-primary: linear-gradient(135deg, #EAF207 0%, #F4F740 100%);
+      }
+      
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: var(--background-color);
+        background-image: url('https://i.imgur.com/Wf7bGAO.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: var(--text-color);
+        line-height: 1.7;
+        min-height: 100vh;
+        padding: 20px;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--card-background);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px var(--shadow-color);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+      }
+      
+      .header {
+        background: var(--card-background);
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px var(--shadow-color);
+      }
+      
+      .header::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 30px;
+        width: 10px;
+        height: 10px;
+        background: radial-gradient(circle, #ff4d4d 60%, #ffb347 100%);
+        border-radius: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 0 8px 2px #ff4d4d99;
+        z-index: 3;
+      }
+      
+      .logo {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 20px;
+      }
+      
+      .logo img {
+        max-width: 300px;
+        height: auto;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      .header h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+        position: relative;
+        padding-bottom: 20px;
+      }
+      
+      .header h1::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+      }
+      
+      .header p {
+        font-size: 1.2em;
+        color: var(--text-secondary);
+        opacity: 0.9;
+      }
+      
+      .info {
+        margin: 20px 30px;
+        padding: 20px;
+        background: rgba(234, 242, 7, 0.1);
+        border-radius: 15px;
+        border: 1px solid rgba(234, 242, 7, 0.3);
+      }
+      
+      .info strong {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+      
+      .msg {
+        background: var(--card-background);
+        margin: 16px 30px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px var(--shadow-color);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .msg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--primary-color), transparent);
+      }
+      
+      .msg:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 25px var(--shadow-color);
+      }
+      
+      .msg.staff {
+        border-left: 5px solid var(--primary-color);
+        background: rgba(234, 242, 7, 0.05);
+      }
+      
+      .msg .meta {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .msg .meta img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid var(--primary-color);
+      }
+      
+      .msg .content {
+        font-size: 15px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+      
+      .msg .attachments img {
+        max-width: 200px;
+        max-height: 120px;
+        margin: 8px 0;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .msg .attachments a {
+        color: var(--primary-color);
+        text-decoration: none;
+        display: block;
+        padding: 8px 12px;
+        background: rgba(234, 242, 7, 0.1);
+        border-radius: 8px;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+      }
+      
+      .msg .attachments a:hover {
+        background: rgba(234, 242, 7, 0.2);
+        transform: translateX(5px);
+      }
+      
+      .msg .embed {
+        background: rgba(234, 242, 7, 0.1);
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin: 12px 0;
+        border: 1px solid rgba(234, 242, 7, 0.3);
+      }
+      
+      .msg .reply {
+        color: var(--accent-color);
+        font-size: 13px;
+        font-style: italic;
+        margin-bottom: 8px;
+        padding: 8px 12px;
+        background: rgba(198, 196, 3, 0.1);
+        border-radius: 8px;
+        border-left: 3px solid var(--accent-color);
+      }
+      
+      .footer {
+        margin: 30px 0 0 0;
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 13px;
+        padding: 20px;
+        background: var(--card-background);
+        border-top: 1px solid var(--border-color);
+      }
+      
+      .footer i {
+        color: var(--primary-color);
+        margin-right: 8px;
+      }
+      </style></head><body>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <img src="https://i.imgur.com/kHvmXj6.png" alt="Street Car Club Roleplay Logo" />
+          </div>
+          <h1><i class="fas fa-ticket-alt"></i> Transcript do Ticket</h1>
+          <p>Street Car Club • Sistema de Atendimento</p>
+        </div><div class='info'>
+        <div style='display: flex; align-items: center; gap: 15px; margin-bottom: 15px;'>
+          <img src='https://cdn.discordapp.com/avatars/331865102955446272/46a802a90f6081f242b3f44125bb403f.webp' alt='Criador' style='width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--primary-color);'>
+          <div>
+            <div><strong><i class="fas fa-user"></i> Criador:</strong> marcios</div>
+            <div><strong><i class="fas fa-shield-alt"></i> Staff responsável:</strong> sramighini</div>
+            <div><strong><i class="fas fa-comment"></i> Motivo do fechamento:</strong> Resolvido</div>
+          </div>
+          <img src='https://cdn.discordapp.com/avatars/706293464123310232/1268fe6c64e34137d38b740edac2562a.webp' alt='Staff' style='width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--primary-color); margin-left: auto;'>
+        </div>
+        <div><strong><i class="fas fa-hashtag"></i> Canal:</strong> #📁suporte-marcios | <strong><i class="fas fa-calendar-alt"></i> Data de Fechamento:</strong> 13/11/2025, 09:55:24</div>
+      </div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/1413346434102595646/f5c7be38cc0050d16fa2028a62a35200.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>Severino SCC#6530</strong> <span>(1413346434102595646)</span> • 13/11/2025, 09:03:02</div><div class='content'>🔔 &lt;@331865102955446272&gt; abriu um ticket! Equipe notificada:</div></div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/1413346434102595646/f5c7be38cc0050d16fa2028a62a35200.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>Severino SCC#6530</strong> <span>(1413346434102595646)</span> • 13/11/2025, 09:03:02</div><div class='content'></div><div class='embed'><div><strong>📑 Ticket Aberto - 📁 Suporte</strong></div><div>Olá <@331865102955446272>, obrigado por entrar em contato!
+
+Sua solicitação foi registrada e nossa equipe irá te atender o mais breve possível. Acompanhe o status do seu ticket por aqui.</div></div></div><div class='msg'><div class='meta'><img src='https://cdn.discordapp.com/avatars/331865102955446272/46a802a90f6081f242b3f44125bb403f.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>marcios</strong> <span>(331865102955446272)</span> • 13/11/2025, 09:03:57</div><div class='content'>Bom dia, neste atrelado e possivel eu transportar 4 amarocks desde que estas tenham todas as rodas dentro do atrelado ?</div><div class='attachments'><img src='https://cdn.discordapp.com/attachments/1438499396001071178/1438499627048370286/image.png?ex=69171aad&is=6915c92d&hm=deef899449ef1644d209b04b196626221883b37146fae638ff44bb95c75a11f4&' alt='anexo'></div></div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/706293464123310232/1268fe6c64e34137d38b740edac2562a.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>sramighini</strong> <span>(706293464123310232)</span> • 13/11/2025, 09:08:00</div><div class='content'>Bom dia &lt;@331865102955446272&gt;</div></div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/706293464123310232/1268fe6c64e34137d38b740edac2562a.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>sramighini</strong> <span>(706293464123310232)</span> • 13/11/2025, 09:08:02</div><div class='content'>Tudo certo?</div></div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/706293464123310232/1268fe6c64e34137d38b740edac2562a.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>sramighini</strong> <span>(706293464123310232)</span> • 13/11/2025, 09:08:41</div><div class='content'>Desde que todas as rodas fiquem para dentro e nada de anormal seja feito pra que elas caibam, você pode usar</div></div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/706293464123310232/1268fe6c64e34137d38b740edac2562a.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>sramighini</strong> <span>(706293464123310232)</span> • 13/11/2025, 09:08:55</div><div class='content'>Fique atento a isso, pois é passivo até de adv</div></div><div class='msg'><div class='meta'><img src='https://cdn.discordapp.com/avatars/331865102955446272/46a802a90f6081f242b3f44125bb403f.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>marcios</strong> <span>(331865102955446272)</span> • 13/11/2025, 09:15:26</div><div class='content'>Ok obrigado</div></div><div class='msg staff'><div class='meta'><img src='https://cdn.discordapp.com/avatars/706293464123310232/1268fe6c64e34137d38b740edac2562a.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>sramighini</strong> <span>(706293464123310232)</span> • 13/11/2025, 09:40:32</div><div class='content'>te ajudo em algo mais?</div></div><div class='msg'><div class='meta'><img src='https://cdn.discordapp.com/avatars/331865102955446272/46a802a90f6081f242b3f44125bb403f.webp' alt='avatar' style='width:20px;height:20px;vertical-align:middle;border-radius:50%;margin-right:6px;'> <strong>marcios</strong> <span>(331865102955446272)</span> • 13/11/2025, 09:58:49</div><div class='content'>Pra ja nao obrigado pode fechar</div></div><div class='footer'><i class="fas fa-robot"></i> Transcript gerado automaticamente pelo sistema de tickets Street Car Club.</div>
+      </div>
+      </body></html>

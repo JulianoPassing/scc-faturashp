@@ -10,6 +10,7 @@ Bot Discord automatizado para organizar e gerenciar faturas do HP. Monitora mens
 - 💾 **Persistência em JSON**: Salva faturas automaticamente em arquivo JSON (faturas abertas e pagas)
 - ✨ **Reações Automáticas**: Confirma o processamento com emojis
 - 📝 **Sistema de Logs**: Registra quem marcou cada fatura como paga (canal configurável)
+- 📊 **Relatórios em HTML**: Comando para gerar relatório visual de faturas em aberto
 
 ## 🚀 Instalação
 
@@ -156,6 +157,41 @@ Valor: R$ 2.350,00
    - A ação é registrada no console
    - Um log detalhado é enviado no canal de logs configurado
 
+4. Para gerar relatório de faturas em aberto:
+   - Digite `!relatorio-faturas` em qualquer canal
+   - O bot gera um arquivo HTML visual e bonito
+   - Baixe e abra no navegador para visualizar
+
+## 🤖 Comandos Disponíveis
+
+### !relatorio-faturas
+Gera um relatório visual em HTML de todas as faturas em aberto.
+
+**Uso:**
+```
+!relatorio-faturas
+```
+
+**Também aceita:**
+```
+!relatorio
+```
+
+**O que o relatório contém:**
+- 📊 Estatísticas gerais (total, valor total)
+- 📋 Lista completa de faturas em aberto
+- 👤 Nome do cliente
+- 🆔 ID da fatura
+- 💵 Valor
+- 📅 Data de criação
+- 🎨 Design visual bonito estilo Discord
+
+O arquivo HTML gerado pode ser:
+- ✅ Aberto em qualquer navegador
+- ✅ Compartilhado com a equipe
+- ✅ Impresso para relatórios físicos
+- ✅ Arquivado para histórico
+
 ## 🗂️ Estrutura do Projeto
 
 ```
@@ -164,16 +200,20 @@ scc-faturashp/
 │   ├── index.js                    # Arquivo principal do bot
 │   ├── handlers/
 │   │   ├── messageHandler.js      # Processa mensagens de faturas
-│   │   └── interactionHandler.js  # Processa cliques em botões
+│   │   ├── interactionHandler.js  # Processa cliques em botões
+│   │   └── commandHandler.js      # Processa comandos (!relatorio-faturas)
 │   └── modules/
 │       ├── faturaParser.js        # Extrai dados das mensagens
 │       ├── faturaEmbed.js         # Cria embeds e botões
 │       ├── faturaStorage.js       # Armazena faturas com persistência JSON
-│       └── logEmbed.js            # Cria embeds de log
+│       ├── logEmbed.js            # Cria embeds de log
+│       └── relatorioHTML.js       # Gera relatórios HTML
 ├── data/
 │   ├── .gitkeep                   # Mantém o diretório no Git
 │   ├── faturas.json               # Dados das faturas (criado automaticamente)
 │   └── faturas.example.json       # Exemplo de estrutura de dados
+├── examples/
+│   └── exemplo-relatorio.md       # Exemplo de uso do comando de relatório
 ├── package.json
 ├── ecosystem.config.js             # Configuração PM2
 ├── .env.example
@@ -201,6 +241,12 @@ Gerencia interações de botões (cliques no botão "Pago").
 
 ### logEmbed.js
 Cria embeds de log para registrar ações de pagamento.
+
+### relatorioHTML.js
+Gera relatórios visuais em HTML de faturas em aberto.
+
+### commandHandler.js
+Processa comandos do bot (como !relatorio-faturas).
 
 ## 📊 PM2 - Gerenciamento de Processos
 

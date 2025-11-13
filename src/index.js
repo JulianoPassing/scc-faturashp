@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 const { processarMensagemFatura } = require('./handlers/messageHandler');
 const { handleBotaoPago } = require('./handlers/interactionHandler');
+const { processarComando } = require('./handlers/commandHandler');
 const { carregarDados } = require('./modules/faturaStorage');
 
 // Validação de variáveis de ambiente
@@ -51,6 +52,10 @@ client.once('clientReady', () => {
 // Evento: Nova mensagem
 client.on('messageCreate', async (message) => {
   try {
+    // Processa comandos
+    await processarComando(message);
+    
+    // Processa mensagens de faturas
     await processarMensagemFatura(message, CANAL_ORIGEM, CANAL_DESTINO);
   } catch (error) {
     console.error('❌ Erro ao processar mensagem:', error);
