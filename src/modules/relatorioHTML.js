@@ -41,177 +41,220 @@ function gerarRelatorioFaturasAbertas(faturasAbertas, servidor) {
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #36393f;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #2f3136;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            max-width: 100%;
+            margin: 0;
+            background: #36393f;
+            box-shadow: none;
         }
 
         .header {
-            background: linear-gradient(90deg, #5865f2 0%, #4752c4 100%);
-            padding: 30px;
-            color: white;
-            text-align: center;
+            background: #202225;
+            padding: 24px 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #5865f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            flex: 1;
         }
 
         .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin: 0 0 4px 0;
             font-weight: 600;
+            color: #ffffff;
         }
 
         .header p {
-            font-size: 16px;
-            opacity: 0.9;
+            font-size: 14px;
+            margin: 0;
+            color: #b9bbbe;
         }
 
         .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            background: #36393f;
+            display: flex;
+            gap: 16px;
+            padding: 16px 32px;
+            background: #2f3136;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
         }
 
         .stat-card {
-            background: #40444b;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #5865f2;
+            background: #202225;
+            padding: 16px 20px;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 200px;
+            border: none;
         }
 
         .stat-card h3 {
-            color: #b9bbbe;
-            font-size: 14px;
-            font-weight: 500;
+            color: #72767d;
+            font-size: 12px;
+            font-weight: 600;
             margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .stat-card p {
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
+            color: #dcddde;
+            font-size: 20px;
+            font-weight: 600;
         }
 
         .content {
-            padding: 30px;
+            padding: 16px 32px 32px;
         }
 
         .fatura-card {
-            background: #40444b;
-            border-left: 4px solid #3ba55d;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: #2f3136;
+            border-left: 4px solid #3ba55c;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 8px;
+            transition: background 0.15s ease;
         }
 
         .fatura-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: #32353b;
         }
 
         .fatura-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .fatura-title {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
+            color: #dcddde;
+            font-size: 16px;
+            font-weight: 500;
         }
 
         .fatura-badge {
-            background: #3ba55d;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 14px;
+            background: #3ba55c;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
             font-weight: 600;
+            text-transform: uppercase;
         }
 
         .fatura-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 12px;
         }
 
         .detail-item {
-            background: #2f3136;
+            background: #202225;
             padding: 12px;
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         .detail-label {
-            color: #b9bbbe;
-            font-size: 12px;
-            font-weight: 500;
+            color: #72767d;
+            font-size: 11px;
+            font-weight: 600;
             margin-bottom: 4px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .detail-value {
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
+            color: #dcddde;
+            font-size: 14px;
+            font-weight: 500;
         }
 
         .footer {
-            background: #36393f;
-            padding: 20px 30px;
+            background: #2f3136;
+            padding: 16px 32px;
             text-align: center;
-            color: #b9bbbe;
-            font-size: 14px;
+            color: #72767d;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 30px;
-            color: #b9bbbe;
+            padding: 80px 32px;
+            color: #72767d;
         }
 
         .empty-state h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: white;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #dcddde;
+            font-weight: 500;
         }
 
         .empty-state p {
-            font-size: 16px;
+            font-size: 14px;
+            color: #b9bbbe;
         }
 
         .icon {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.3;
         }
 
         @media print {
             body {
-                background: white;
-            }
-            
-            .container {
-                box-shadow: none;
+                background: #36393f;
             }
             
             .fatura-card:hover {
-                transform: none;
+                background: #2f3136;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px;
+            }
+
+            .stats {
+                padding: 16px;
+                flex-direction: column;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .fatura-details {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -219,14 +262,16 @@ function gerarRelatorioFaturasAbertas(faturasAbertas, servidor) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>💰 Relatório de Faturas em Aberto</h1>
-            <p>Sistema de Gerenciamento de Faturas HP</p>
-            <p>📅 Gerado em: ${dataFormatada}</p>
+            <div class="logo">💰</div>
+            <div class="header-content">
+                <h1>Relatório de Faturas em Aberto</h1>
+                <p>Sistema HP • Gerado em: ${dataFormatada}</p>
+            </div>
         </div>
 
         <div class="stats">
             <div class="stat-card">
-                <h3>📋 Total de Faturas</h3>
+                <h3>📋 Faturas em Aberto</h3>
                 <p>${total}</p>
             </div>
             <div class="stat-card">
@@ -235,7 +280,7 @@ function gerarRelatorioFaturasAbertas(faturasAbertas, servidor) {
             </div>
             <div class="stat-card">
                 <h3>🏢 Servidor</h3>
-                <p>${servidor.nome || 'N/A'}</p>
+                <p>${servidor.nome || 'Discord'}</p>
             </div>
         </div>
 
@@ -285,8 +330,7 @@ function gerarRelatorioFaturasAbertas(faturasAbertas, servidor) {
         </div>
 
         <div class="footer">
-            <p>🤖 Sistema de Faturas HP | Gerado automaticamente</p>
-            <p>© ${new Date().getFullYear()} - Todos os direitos reservados</p>
+            <p>Sistema de Faturas HP • Gerado automaticamente © ${new Date().getFullYear()}</p>
         </div>
     </div>
 </body>

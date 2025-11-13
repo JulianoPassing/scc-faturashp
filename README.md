@@ -201,13 +201,20 @@ Gera um relatório visual em HTML de todas as faturas em aberto.
 ```
 
 **O que o relatório contém:**
-- 📊 Estatísticas gerais (total, valor total)
+- 💰 Logo personalizada no header
+- 📊 Estatísticas gerais (total, valor total, servidor)
 - 📋 Lista completa de faturas em aberto
 - 👤 Nome do cliente
 - 🆔 ID da fatura
 - 💵 Valor (suporta formato "k": 1k = R$ 1.000,00, 2.5k = R$ 2.500,00)
 - 📅 Data de criação
-- 🎨 Design visual bonito estilo Discord
+- 🎨 Design visual idêntico ao Discord Transcript (cores oficiais do Discord)
+
+**Design e Visual:**
+- 🎨 Esquema de cores oficial do Discord
+- 💰 Logo circular no header
+- 📱 Totalmente responsivo (mobile, tablet, desktop)
+- 🖨️ Otimizado para impressão
 
 O arquivo HTML gerado pode ser:
 - ✅ Aberto em qualquer navegador
@@ -239,7 +246,8 @@ scc-faturashp/
 │   └── faturas.example.json       # Exemplo de estrutura de dados
 ├── examples/
 │   ├── exemplo-relatorio.md       # Exemplo de uso do comando de relatório
-│   └── exemplo-valores-k.md       # Exemplos de valores com formato "k"
+│   ├── exemplo-valores-k.md       # Exemplos de valores com formato "k"
+│   └── cores-discord.md           # Paleta de cores do Discord usada
 ├── package.json
 ├── ecosystem.config.js             # Configuração PM2
 ├── .env.example
