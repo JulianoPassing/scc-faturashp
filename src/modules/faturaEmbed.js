@@ -85,7 +85,7 @@ function criarEmbedFaturaPaga(fatura, usuarioPagou) {
         inline: true 
       },
       {
-        name: '✅ Pago por',
+        name: '✅ Pago para',
         value: `${usuarioPagou}`,
         inline: false
       }
