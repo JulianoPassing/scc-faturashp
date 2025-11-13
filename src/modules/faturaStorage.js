@@ -63,8 +63,8 @@ function carregarDados() {
       faturas.clear();
       
       dados.faturas.forEach(fatura => {
-        const { id, ...dadosFatura } = fatura;
-        faturas.set(id, dadosFatura);
+        // Mantém o ID no objeto (não remove com destructuring)
+        faturas.set(fatura.id, fatura);
       });
 
       const abertas = dados.faturas.filter(f => !f.paga).length;
