@@ -28,7 +28,7 @@ const CANAL_ORIGEM = process.env.CANAL_ORIGEM;
 const CANAL_DESTINO = process.env.CANAL_DESTINO;
 
 // Evento: Bot conectado
-client.once('ready', () => {
+client.once('clientReady', () => {
   console.log('═══════════════════════════════════════');
   console.log('✅ Bot de Faturas HP iniciado com sucesso!');
   console.log(`🤖 Logado como: ${client.user.tag}`);
