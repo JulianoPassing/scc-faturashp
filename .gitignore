@@ -4,4 +4,5 @@ node_modules/
 *.log
 logs/
 .pm2/
+data/faturas.json
 

@@ -1,0 +1,24 @@
+{
+  "faturas": [
+    {
+      "id": "12345",
+      "nome": "João Silva",
+      "valor": "R$ 1.500,00",
+      "mensagemId": "1234567890123456789",
+      "paga": false,
+      "dataCriacao": "2025-11-13T10:30:00.000Z"
+    },
+    {
+      "id": "67890",
+      "nome": "Maria Santos",
+      "valor": "R$ 2.350,00",
+      "mensagemId": "9876543210987654321",
+      "paga": true,
+      "usuarioPagou": "<@123456789>",
+      "dataPagamento": "2025-11-13T11:45:00.000Z",
+      "dataCriacao": "2025-11-13T10:00:00.000Z"
+    }
+  ],
+  "ultimaAtualizacao": "2025-11-13T11:45:00.000Z"
+}
+

@@ -7,7 +7,7 @@ Bot Discord automatizado para organizar e gerenciar faturas do HP. Monitora mens
 - ✅ **Monitoramento Automático**: Detecta mensagens de faturas em formato específico
 - 📊 **Formatação Visual**: Cria embeds bonitos e organizados com as informações
 - 🔘 **Botão de Pagamento**: Permite marcar faturas como pagas com um clique
-- 💾 **Armazenamento**: Mantém histórico de faturas em memória
+- 💾 **Persistência em JSON**: Salva faturas automaticamente em arquivo JSON (faturas abertas e pagas)
 - ✨ **Reações Automáticas**: Confirma o processamento com emojis
 - 📝 **Sistema de Logs**: Registra quem marcou cada fatura como paga (canal configurável)
 
@@ -168,13 +168,17 @@ scc-faturashp/
 │   └── modules/
 │       ├── faturaParser.js        # Extrai dados das mensagens
 │       ├── faturaEmbed.js         # Cria embeds e botões
-│       ├── faturaStorage.js       # Armazena faturas em memória
+│       ├── faturaStorage.js       # Armazena faturas com persistência JSON
 │       └── logEmbed.js            # Cria embeds de log
+├── data/
+│   ├── .gitkeep                   # Mantém o diretório no Git
+│   ├── faturas.json               # Dados das faturas (criado automaticamente)
+│   └── faturas.example.json       # Exemplo de estrutura de dados
 ├── package.json
 ├── ecosystem.config.js             # Configuração PM2
 ├── .env.example
 ├── .gitignore
-├── INSTRUCOES_CANAL_LOGS.md       # Instruções para configurar logs
+├── INSTRUCOES_PERSISTENCIA.md     # Guia de persistência e backup
 └── README.md
 ```
 
@@ -187,7 +191,7 @@ Responsável por extrair informações de faturas das mensagens de texto.
 Cria os embeds visuais e botões interativos para as faturas.
 
 ### faturaStorage.js
-Gerencia o armazenamento de faturas em memória (pode ser expandido para usar banco de dados).
+Gerencia o armazenamento de faturas com persistência em arquivo JSON. Salva automaticamente todas as mudanças e carrega os dados ao reiniciar o bot.
 
 ### messageHandler.js
 Processa mensagens recebidas e coordena o envio das faturas formatadas.
@@ -229,19 +233,47 @@ pm2 flush scc-faturas-hp
 
 ## 🔧 Melhorias Futuras
 
-- 💾 Implementar persistência em banco de dados (MongoDB, PostgreSQL)
-- 📊 Adicionar comando para listar faturas pendentes
-- 📈 Relatórios de faturas pagas/pendentes
+- 💾 Migração para banco de dados (MongoDB, PostgreSQL) para alta escala
+- 📊 Comandos para listar faturas pendentes
+- 📈 Relatórios automáticos de faturas pagas/pendentes
 - 🔔 Notificações de faturas vencidas
 - 🔐 Sistema de permissões (quem pode marcar como pago)
-- 📝 Logs detalhados em arquivo
 - 🌐 Dashboard web para visualização
+- 📤 Exportar relatórios em Excel/PDF
+
+## 💾 Persistência de Dados
+
+O bot salva automaticamente todas as faturas (abertas e pagas) no arquivo `data/faturas.json`:
+
+- ✅ **Salvamento Automático**: Toda vez que uma fatura é criada ou marcada como paga
+- ✅ **Carregamento Automático**: Ao iniciar o bot, todos os dados são restaurados
+- ✅ **Backup Manual**: Você pode fazer backup copiando o arquivo `data/faturas.json`
+- ✅ **Formato Legível**: Arquivo JSON formatado e fácil de ler
+
+### Estrutura dos Dados
+
+```json
+{
+  "faturas": [
+    {
+      "id": "12345",
+      "nome": "João Silva",
+      "valor": "R$ 1.500,00",
+      "mensagemId": "1234567890123456789",
+      "paga": false,
+      "dataCriacao": "2025-11-13T10:30:00.000Z"
+    }
+  ],
+  "ultimaAtualizacao": "2025-11-13T11:45:00.000Z"
+}
+```
 
 ## ⚠️ Observações Importantes
 
-- **Armazenamento em Memória**: As faturas são armazenadas em memória. Se o bot reiniciar, os dados serão perdidos. Para produção, considere usar um banco de dados.
+- **Persistência em JSON**: As faturas são salvas automaticamente em `data/faturas.json`. Faça backups regulares deste arquivo.
 - **Token do Bot**: Nunca compartilhe o token do seu bot. Mantenha o arquivo `.env` seguro e fora do controle de versão.
 - **Permissões**: Certifique-se de que o bot tem as permissões necessárias nos canais configurados.
+- **Diretório de Dados**: O diretório `data/` é criado automaticamente e está no `.gitignore` para não versionar dados sensíveis.
 
 ## 🐛 Troubleshooting
 

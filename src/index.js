@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 const { processarMensagemFatura } = require('./handlers/messageHandler');
 const { handleBotaoPago } = require('./handlers/interactionHandler');
+const { carregarDados } = require('./modules/faturaStorage');
 
 // Validação de variáveis de ambiente
 if (!process.env.DISCORD_TOKEN) {
@@ -27,6 +28,12 @@ const client = new Client({
 const CANAL_ORIGEM = process.env.CANAL_ORIGEM;
 const CANAL_DESTINO = process.env.CANAL_DESTINO;
 const CANAL_LOGS = process.env.CANAL_LOGS || null;
+
+// Carrega os dados das faturas ao iniciar
+console.log('═══════════════════════════════════════');
+console.log('🔄 Carregando dados...');
+carregarDados();
+console.log('═══════════════════════════════════════');
 
 // Evento: Bot conectado
 client.once('clientReady', () => {
