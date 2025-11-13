@@ -26,6 +26,7 @@ const client = new Client({
 // IDs dos canais
 const CANAL_ORIGEM = process.env.CANAL_ORIGEM;
 const CANAL_DESTINO = process.env.CANAL_DESTINO;
+const CANAL_LOGS = process.env.CANAL_LOGS || null;
 
 // Evento: Bot conectado
 client.once('clientReady', () => {
@@ -34,6 +35,9 @@ client.once('clientReady', () => {
   console.log(`🤖 Logado como: ${client.user.tag}`);
   console.log(`📋 Monitorando canal: ${CANAL_ORIGEM}`);
   console.log(`📤 Enviando para canal: ${CANAL_DESTINO}`);
+  if (CANAL_LOGS) {
+    console.log(`📝 Logs de pagamento: ${CANAL_LOGS}`);
+  }
   console.log('═══════════════════════════════════════');
 });
 
@@ -49,7 +53,7 @@ client.on('messageCreate', async (message) => {
 // Evento: Interação (botões)
 client.on('interactionCreate', async (interaction) => {
   try {
-    await handleBotaoPago(interaction);
+    await handleBotaoPago(interaction, CANAL_LOGS);
   } catch (error) {
     console.error('❌ Erro ao processar interação:', error);
     

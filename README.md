@@ -9,6 +9,7 @@ Bot Discord automatizado para organizar e gerenciar faturas do HP. Monitora mens
 - 🔘 **Botão de Pagamento**: Permite marcar faturas como pagas com um clique
 - 💾 **Armazenamento**: Mantém histórico de faturas em memória
 - ✨ **Reações Automáticas**: Confirma o processamento com emojis
+- 📝 **Sistema de Logs**: Registra quem marcou cada fatura como paga (canal configurável)
 
 ## 🚀 Instalação
 
@@ -69,6 +70,9 @@ CANAL_DESTINO=1438517282669334568
 
 # ID do servidor (opcional, para referência)
 SERVIDOR_ID=1152027035284295740
+
+# Canal de logs de pagamento (opcional)
+CANAL_LOGS=1438520411943080016
 ```
 
 **Como obter IDs de canais:**
@@ -150,6 +154,7 @@ Valor: R$ 2.350,00
    - O botão é removido
    - Aparece quem marcou como pago
    - A ação é registrada no console
+   - Um log detalhado é enviado no canal de logs configurado
 
 ## 🗂️ Estrutura do Projeto
 
@@ -163,10 +168,13 @@ scc-faturashp/
 │   └── modules/
 │       ├── faturaParser.js        # Extrai dados das mensagens
 │       ├── faturaEmbed.js         # Cria embeds e botões
-│       └── faturaStorage.js       # Armazena faturas em memória
+│       ├── faturaStorage.js       # Armazena faturas em memória
+│       └── logEmbed.js            # Cria embeds de log
 ├── package.json
+├── ecosystem.config.js             # Configuração PM2
 ├── .env.example
 ├── .gitignore
+├── INSTRUCOES_CANAL_LOGS.md       # Instruções para configurar logs
 └── README.md
 ```
 
@@ -186,6 +194,9 @@ Processa mensagens recebidas e coordena o envio das faturas formatadas.
 
 ### interactionHandler.js
 Gerencia interações de botões (cliques no botão "Pago").
+
+### logEmbed.js
+Cria embeds de log para registrar ações de pagamento.
 
 ## 📊 PM2 - Gerenciamento de Processos
 

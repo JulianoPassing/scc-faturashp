@@ -1,5 +1,6 @@
 const { criarEmbedFaturaPaga } = require('../modules/faturaEmbed');
 const { buscarFatura, marcarComoPaga, estaoPaga } = require('../modules/faturaStorage');
+const { criarLogPagamento } = require('../modules/logEmbed');
 
 /**
  * Handler para interações de botões
@@ -8,8 +9,9 @@ const { buscarFatura, marcarComoPaga, estaoPaga } = require('../modules/faturaSt
 /**
  * Processa o clique no botão "Pago"
  * @param {Interaction} interaction - Interação do Discord
+ * @param {string} canalLogsId - ID do canal de logs (opcional)
  */
-async function handleBotaoPago(interaction) {
+async function handleBotaoPago(interaction, canalLogsId = null) {
   // Verifica se é uma interação de botão
   if (!interaction.isButton()) {
     return;
@@ -56,6 +58,28 @@ async function handleBotaoPago(interaction) {
   });
 
   console.log(`✅ Fatura ${faturaId} marcada como paga por ${interaction.user.tag}`);
+
+  // Envia log no canal de logs, se configurado
+  if (canalLogsId) {
+    try {
+      const canalLogs = await interaction.client.channels.fetch(canalLogsId);
+      
+      if (canalLogs) {
+        const dadosUsuario = {
+          id: interaction.user.id,
+          tag: interaction.user.tag,
+          avatar: interaction.user.displayAvatarURL({ dynamic: true })
+        };
+
+        const embedLog = criarLogPagamento(fatura, dadosUsuario);
+        
+        await canalLogs.send({ embeds: [embedLog] });
+        console.log(`📝 Log de pagamento enviado para o canal ${canalLogsId}`);
+      }
+    } catch (error) {
+      console.error('❌ Erro ao enviar log de pagamento:', error);
+    }
+  }
 }
 
 module.exports = {
