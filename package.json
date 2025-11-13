@@ -5,7 +5,13 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop scc-faturas-hp",
+    "pm2:restart": "pm2 restart scc-faturas-hp",
+    "pm2:delete": "pm2 delete scc-faturas-hp",
+    "pm2:logs": "pm2 logs scc-faturas-hp",
+    "pm2:status": "pm2 status scc-faturas-hp"
   },
   "keywords": ["discord", "bot", "faturas", "hp"],
   "author": "",
@@ -13,6 +19,9 @@
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "pm2": "^5.3.0"
   }
 }
 

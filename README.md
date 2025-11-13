@@ -79,13 +79,41 @@ SERVIDOR_ID=1152027035284295740
 
 ### Iniciar o Bot
 
+**Modo Normal:**
 ```bash
-# Modo normal
 npm start
+```
 
-# Modo desenvolvimento (reinicia automaticamente)
+**Modo Desenvolvimento (reinicia automaticamente):**
+```bash
 npm run dev
 ```
+
+**Com PM2 (Produção - recomendado):**
+```bash
+# Instalar dependências (incluindo PM2)
+npm install
+
+# Iniciar o bot
+npm run pm2:start
+
+# Ver logs em tempo real
+npm run pm2:logs
+
+# Ver status
+npm run pm2:status
+
+# Reiniciar o bot
+npm run pm2:restart
+
+# Parar o bot
+npm run pm2:stop
+
+# Remover do PM2
+npm run pm2:delete
+```
+
+O PM2 mantém o bot rodando mesmo após reiniciar o servidor e reinicia automaticamente se o bot crashar.
 
 ### Formato da Mensagem de Fatura
 
@@ -158,6 +186,35 @@ Processa mensagens recebidas e coordena o envio das faturas formatadas.
 
 ### interactionHandler.js
 Gerencia interações de botões (cliques no botão "Pago").
+
+## 📊 PM2 - Gerenciamento de Processos
+
+O bot está configurado para rodar com PM2 usando o nome **`scc-faturas-hp`**.
+
+### Configurações do PM2 (ecosystem.config.js):
+- **Nome do processo**: `scc-faturas-hp`
+- **Reinício automático**: Ativado
+- **Limite de memória**: 1GB
+- **Logs**: Salvos em `./logs/`
+  - `err.log` - Erros
+  - `out.log` - Saída padrão
+  - `combined.log` - Combinado
+
+### Comandos úteis do PM2:
+```bash
+# Ver lista de todos os processos
+pm2 list
+
+# Monitorar recursos em tempo real
+pm2 monit
+
+# Salvar configuração atual (iniciar automaticamente no boot)
+pm2 save
+pm2 startup
+
+# Limpar logs antigos
+pm2 flush scc-faturas-hp
+```
 
 ## 🔧 Melhorias Futuras
 
