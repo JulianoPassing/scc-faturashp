@@ -11,6 +11,7 @@ Bot Discord automatizado para organizar e gerenciar faturas do HP. Monitora mens
 - ✨ **Reações Automáticas**: Confirma o processamento com emojis
 - 📝 **Sistema de Logs**: Registra quem marcou cada fatura como paga (canal configurável)
 - 📊 **Relatórios em HTML**: Comando para gerar relatório visual de faturas em aberto
+- 💰 **Formato "k" para Valores**: Suporte para valores simplificados (1k = R$ 1.000, 10k = R$ 10.000)
 
 ## 🚀 Instalação
 
@@ -130,14 +131,27 @@ ID: 12345
 Valor: R$ 1.500,00
 ```
 
+**Ou usando formato simplificado com "k":**
+
+```
+Nome: Maria Santos
+ID: 67890
+Valor: 2.5k
+```
+
 **Regras:**
 - Cada informação deve estar em uma linha separada
 - Use o formato `Campo: Valor`
 - Os campos obrigatórios são: Nome, ID e Valor
 - O formato não é case-sensitive (Nome, nome, NOME funcionam)
+- **Valores com "k"**: Aceita formatos como `1k`, `2.5k`, `10k` (onde k = mil)
+  - `1k` = R$ 1.000,00
+  - `2.5k` = R$ 2.500,00
+  - `10k` = R$ 10.000,00
 
 ### Exemplo de Uso
 
+#### Exemplo 1: Formato tradicional
 1. Um usuário envia no canal de origem:
 ```
 Nome: Maria Santos
@@ -145,7 +159,16 @@ ID: 67890
 Valor: R$ 2.350,00
 ```
 
-2. O bot processa e envia no canal de destino uma mensagem formatada com:
+#### Exemplo 2: Formato simplificado com "k"
+1. Um usuário envia no canal de origem:
+```
+Nome: João Silva
+ID: 12345
+Valor: 5k
+```
+(Valor será processado como R$ 5.000,00)
+
+2. Em ambos os casos, o bot processa e envia no canal de destino uma mensagem formatada com:
    - 💰 Embed colorido com todas as informações
    - 🔘 Botão "✅ Pago" 
    - ⏰ Timestamp da criação
@@ -182,7 +205,7 @@ Gera um relatório visual em HTML de todas as faturas em aberto.
 - 📋 Lista completa de faturas em aberto
 - 👤 Nome do cliente
 - 🆔 ID da fatura
-- 💵 Valor
+- 💵 Valor (suporta formato "k": 1k = R$ 1.000,00, 2.5k = R$ 2.500,00)
 - 📅 Data de criação
 - 🎨 Design visual bonito estilo Discord
 
@@ -202,18 +225,21 @@ scc-faturashp/
 │   │   ├── messageHandler.js      # Processa mensagens de faturas
 │   │   ├── interactionHandler.js  # Processa cliques em botões
 │   │   └── commandHandler.js      # Processa comandos (!relatorio-faturas)
-│   └── modules/
-│       ├── faturaParser.js        # Extrai dados das mensagens
-│       ├── faturaEmbed.js         # Cria embeds e botões
-│       ├── faturaStorage.js       # Armazena faturas com persistência JSON
-│       ├── logEmbed.js            # Cria embeds de log
-│       └── relatorioHTML.js       # Gera relatórios HTML
+│   ├── modules/
+│   │   ├── faturaParser.js        # Extrai dados das mensagens
+│   │   ├── faturaEmbed.js         # Cria embeds e botões
+│   │   ├── faturaStorage.js       # Armazena faturas com persistência JSON
+│   │   ├── logEmbed.js            # Cria embeds de log
+│   │   └── relatorioHTML.js       # Gera relatórios HTML
+│   └── utils/
+│       └── valorUtils.js          # Utilitários para valores (conversão de "k")
 ├── data/
 │   ├── .gitkeep                   # Mantém o diretório no Git
 │   ├── faturas.json               # Dados das faturas (criado automaticamente)
 │   └── faturas.example.json       # Exemplo de estrutura de dados
 ├── examples/
-│   └── exemplo-relatorio.md       # Exemplo de uso do comando de relatório
+│   ├── exemplo-relatorio.md       # Exemplo de uso do comando de relatório
+│   └── exemplo-valores-k.md       # Exemplos de valores com formato "k"
 ├── package.json
 ├── ecosystem.config.js             # Configuração PM2
 ├── .env.example
@@ -247,6 +273,9 @@ Gera relatórios visuais em HTML de faturas em aberto.
 
 ### commandHandler.js
 Processa comandos do bot (como !relatorio-faturas).
+
+### valorUtils.js
+Utilitários para trabalhar com valores monetários. Converte formatos como "1k" para 1000, "2.5k" para 2500, etc.
 
 ## 📊 PM2 - Gerenciamento de Processos
 

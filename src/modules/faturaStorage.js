@@ -89,6 +89,7 @@ function carregarDados() {
 function salvarFatura(faturaId, dados, mensagemId) {
   faturas.set(faturaId, {
     ...dados,
+    id: faturaId, // Garante que o ID está no objeto
     mensagemId,
     paga: false,
     dataCriacao: new Date().toISOString()

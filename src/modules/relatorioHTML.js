@@ -1,3 +1,5 @@
+const { converterValorParaNumero, formatarValorBRL } = require('../utils/valorUtils');
+
 /**
  * Módulo para gerar relatórios em HTML
  */
@@ -21,9 +23,8 @@ function gerarRelatorioFaturasAbertas(faturasAbertas, servidor) {
   // Calcula total
   const total = faturasAbertas.length;
   const valorTotal = faturasAbertas.reduce((acc, f) => {
-    // Tenta extrair número do valor (remove R$, pontos e vírgulas)
-    const valorNumerico = f.valor.replace(/[^\d,]/g, '').replace(',', '.');
-    return acc + (parseFloat(valorNumerico) || 0);
+    // Usa a função de conversão que entende "k"
+    return acc + converterValorParaNumero(f.valor);
   }, 0);
 
   const html = `<!DOCTYPE html>
@@ -230,7 +231,7 @@ function gerarRelatorioFaturasAbertas(faturasAbertas, servidor) {
             </div>
             <div class="stat-card">
                 <h3>💵 Valor Total</h3>
-                <p>R$ ${valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p>${formatarValorBRL(valorTotal)}</p>
             </div>
             <div class="stat-card">
                 <h3>🏢 Servidor</h3>
